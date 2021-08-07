@@ -12,12 +12,12 @@ namespace Fiap.Aula01.Exemplos // namespace = Nome dos pacotes antes das classes
      *  using -> imports
      *  
      *  Modificadores:
-     *  public ->
-     *  private ->
-     *  protected ->
-     *  internal ->
-     *  protected internal ->
-     *  protected private ->
+     *  public -> Todos
+     *  private -> Somente a classe
+     *  protected -> Somente a classe e as classes filhas
+     *  internal -> Todos do mesmo projeto 
+     *  protected internal -> A classe, classe filha e todos do mesmo projeto
+     *  protected private -> A classe, classes filhas do mesmo projeto
      *  
      *  Tipo de dados:
      *  Não existem tipos primitivos
@@ -26,6 +26,8 @@ namespace Fiap.Aula01.Exemplos // namespace = Nome dos pacotes antes das classes
      *  Padrões de Nomenclatura:
      *  Classes/Métodos -> UpperCase
      *  Atributos/Fields -> começam com "_"
+     *  
+     *  Atalhos -> CTRL + K + C (comenta )
      */
 
     class Program
@@ -50,14 +52,38 @@ namespace Fiap.Aula01.Exemplos // namespace = Nome dos pacotes antes das classes
             Console.WriteLine("Digite o preço do Produto: ");
             decimal preco = decimal.Parse(Console.ReadLine());
 
+            Console.WriteLine("Informe o Tamanho: ");
+            int tamanho = int.Parse(Console.ReadLine());
             // Intanciar um Produto e atribuir os valores
-            Produto produto = new Produto();
+            Produto produto = new Tenis(id, nome, tamanho)
+            {
+                Preco = preco
+            };
 
-            produto.Nome = nome;
-            produto.Id = id;
-            produto.Preco = preco;
+            Console.WriteLine($"ID {produto.Id}, Nome: {produto.Nome}, Preço(R$): {produto.Preco}, Tamanho: {tamanho}");
 
-            Console.WriteLine($"Nome: {produto.Nome}, Preço(R$): {produto.Preco}, ID {produto.Id}");
+            // Ler Inflação do produto
+            Console.WriteLine("Informe a Inflação do Produto: ");
+            decimal inflacao = decimal.Parse(Console.ReadLine());
+
+            // Aumentar o Preço do produto com a inflação
+            produto.AumentarPreco(inflacao);
+
+            // Exibir o preço atualizado
+            Console.WriteLine($"Novo Preço do Produto com Inflação: {produto.Preco}");
+
+            // Aplicar desconto de 10%
+            decimal novoValor = produto.CalcularDesconto();
+
+            // Exibir novo preço com desconto
+            Console.WriteLine($"Novo Preço com desconto: {novoValor}");
+            // Ler o cupom de deconto FIAP30
+            Console.WriteLine("Digite um cupom: ");
+            string cupom = Console.ReadLine();
+
+            // Exibir o valor com desconto
+            decimal valor = produto.CalcularDesconto(cupom);
+            Console.WriteLine($"O valor de desconto é: {valor}");
         }
     }
 }
