@@ -28,14 +28,16 @@ namespace Fiap.Aula01.Exemplos.Models
             return Preco * 0.9m;
         }
 
-        // Sobrescrever o metodo ded CalcularDesconto(cupom) que da 30%, adicionar o cupom FIAP50 para um desconto de 50%
+        // Sobrescrever o metodo de CalcularDesconto(cupom) que da 30%, adicionar o cupom FIAP50 para um desconto de 50%
         public override decimal CalcularDesconto(string cupom)
         {
+            /*
             if (cupom == "FIAP50")
             {
                 return Preco * 0.5m;
             }
-            return Preco; 
+             */ 
+            return cupom == "FIAP50" ? Preco * 0.5m : base.CalcularDesconto(cupom); 
         }
 
         public override void AumentarPreco(decimal inflacao)
