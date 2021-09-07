@@ -9,7 +9,7 @@ namespace Fiap.Aula01.Exemplos.Repositories
     interface ILojaRepository
     {
         void Cadastrar(Loja loja);
-
+       
         IList<Loja> Listar();
 
 

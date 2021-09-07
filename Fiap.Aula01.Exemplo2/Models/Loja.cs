@@ -15,7 +15,12 @@ namespace Fiap.Aula01.Exemplo2.Models
 
         public PorteLoja Porte { get; set; }
 
-        public StatusLoja status { get; set; }
+        public StatusLoja Status { get; set; }
+
+        public override string ToString()
+        {
+            return $" Lojas Cadastradas | Nome: {Nome} \n Endereço:  {Endereco}\n Porte:  {Porte}\n Status Loja: {Status} \n Data Abertura: {DataAbertura}";
+        }
 
     }
 

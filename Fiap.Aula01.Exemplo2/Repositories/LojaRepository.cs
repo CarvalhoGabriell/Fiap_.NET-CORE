@@ -1,8 +1,9 @@
-﻿using Fiap.Aula01.Exemplo2.Models;
+﻿using Fiap.Aula01.Exemplo2.Exceptions;
+using Fiap.Aula01.Exemplo2.Models;
 using Fiap.Aula01.Exemplos.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace Fiap.Aula01.Exemplo2.Repositories
 {
@@ -13,11 +14,19 @@ namespace Fiap.Aula01.Exemplo2.Repositories
 
         public void Cadastrar(Loja loja)
         {
+            if (loja == null)
+            {
+                throw new ArgumentException("A loja esta vazia");
+            }
             _lojas.Add(loja);
         }
 
         public IList<Loja> Listar()
         {
+            if (_lojas.Count == 0 || _lojas == null)
+            {
+                throw new EmptyCollectionException("Nenhuma lista cadastrada");
+            }
             return _lojas;
         }
 
